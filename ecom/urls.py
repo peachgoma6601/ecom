@@ -20,10 +20,11 @@ from .views import home
 from django.conf import settings
 from django.conf.urls.static import static
 from store import urls as storeurls
-
+from cart import urls as carturls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('store/',include(storeurls),name='store'),
+    path('cart/',include(carturls),name='cart'),
     path('',home,name='home'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
