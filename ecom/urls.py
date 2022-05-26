@@ -21,10 +21,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from store import urls as storeurls
 from cart import urls as carturls
+from accounts import urls as accounturls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('store/',include(storeurls),name='store'),
     path('cart/',include(carturls),name='cart'),
     path('',home,name='home'),
+    path('account/',include(accounturls),name='account')
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

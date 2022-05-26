@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self,username,email,password=None):
+    def create_user(self,username,email,first_name,last_name,password=None,):
         if not email:
             raise ValueError('user must have email')
         if not username:
@@ -11,6 +11,8 @@ class MyAccountManager(BaseUserManager):
         
         user = self.model(
             username=username,
+            first_name = first_name,
+            last_name =last_name,
             email=self.normalize_email(email)
         )
 
@@ -18,9 +20,11 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,username,email,password):
+    def create_superuser(self,username,email,password,first_name,last_name):
         user = self.create_user(
             username=username,
+            first_name = first_name,
+            last_name = last_name,
             password=password,
             email=self.normalize_email(email)
         )
@@ -33,6 +37,8 @@ class MyAccountManager(BaseUserManager):
         return user
 
 class Account(AbstractBaseUser):
+    first_name = models.CharField(max_length=50,unique=True)
+    last_name = models.CharField(max_length=50,unique=True)
     username = models.CharField(max_length=50,unique=True)
     email = models.EmailField(max_length=100,unique=True)
     phone_number = models.CharField(max_length=10)
@@ -44,7 +50,7 @@ class Account(AbstractBaseUser):
     is_superuser =models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username','first_name','last_name',]
 
     objects = MyAccountManager()
 
