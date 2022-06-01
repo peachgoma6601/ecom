@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'cart',
+    'orders',
+    
 ]
 
 MIDDLEWARE = [
@@ -154,3 +156,5 @@ EMAIL_PORT = '465'
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'peachgoma6601@gmail.com'
 EMAIL_HOST_PASSWORD = 'elxv tiey lohm yjcn'
+
+

@@ -81,6 +81,7 @@ def login(request):
                     next_page = params['next']
                     return redirect(next_page) 
             except:
+                print('dashboard')
                 return redirect('dashboard')
         else:
             
